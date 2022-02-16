@@ -14,6 +14,7 @@ def hello_world():
     return config.nginx_conf_dir
 
 # nginx console
+@app.route("/nginx/start")
 def nginx_start():
     return json.dumps(nginx.start(),ensure_ascii=False)
 
