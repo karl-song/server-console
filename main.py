@@ -36,7 +36,7 @@ def nginx_test():
 
 @app.route("/nginx/status")
 def nginx_status():
-    return json.dumps(nginx.start(),ensure_ascii=False)
+    return json.dumps(nginx.status(),ensure_ascii=False)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)
