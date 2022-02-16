@@ -14,9 +14,24 @@ def hello_world():
     return config.nginx_conf_dir
 
 # nginx console
-@app.route("/nginx/start")
 def nginx_start():
     return json.dumps(nginx.start(),ensure_ascii=False)
+
+@app.route("/nginx/stop")
+def nginx_stop():
+    return json.dumps(nginx.stop(),ensure_ascii=False)
+
+@app.route("/nginx/quit")
+def nginx_quit():
+    return json.dumps(nginx.quit(),ensure_ascii=False)
+
+@app.route("/nginx/reload")
+def nginx_reload():
+    return json.dumps(nginx.reload(),ensure_ascii=False)
+
+@app.route("/nginx/test")
+def nginx_test():
+    return json.dumps(nginx.test(),ensure_ascii=False)
 
 @app.route("/nginx/status")
 def nginx_status():
