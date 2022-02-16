@@ -23,6 +23,71 @@ def start():
             'err':stderr
         }
 
+def stop():
+    if status()['status']:
+        proc = subprocess.run("nginx -s stop", shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+        stdout = proc.stdout.decode("gbk")
+        stderr = proc.stderr.decode("gbk")
+
+        return {
+            'status':True if stderr=='' else False,
+            'out':stdout,
+            'err':stderr
+        }
+    else:
+        return {
+            'status':False,
+            'out':'Nginx is not running',
+            'err':'Nginx is not running'
+        }
+
+def quit():
+    if status()['status']:
+        proc = subprocess.run("nginx -s quit", shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+        stdout = proc.stdout.decode("gbk")
+        stderr = proc.stderr.decode("gbk")
+
+        return {
+            'status':True if stderr=='' else False,
+            'out':stdout,
+            'err':stderr
+        }
+    else:
+        return {
+            'status':False,
+            'out':'Nginx is not running',
+            'err':'Nginx is not running'
+        }
+
+def reload():
+    if status()['status']:
+        proc = subprocess.run("nginx -s reload", shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+        stdout = proc.stdout.decode("gbk")
+        stderr = proc.stderr.decode("gbk")
+
+        return {
+            'status':True if stderr=='' else False,
+            'out':stdout,
+            'err':stderr
+        }
+    else:
+        return {
+            'status':False,
+            'out':'Nginx is not running',
+            'err':'Nginx is not running'
+        }
+
+def test():
+    proc = subprocess.run("nginx -t", shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+    stdout = proc.stdout.decode("gbk")
+    stderr = proc.stderr.decode("gbk")
+
+    return {
+        'status':True if stderr=='' else False,
+        'out':stdout,
+        'err':stderr
+    }
+
 def status():
     proc = subprocess.run("netstat -anput | grep nginx", shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
     stdout = proc.stdout.decode("gbk")
