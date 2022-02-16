@@ -95,6 +95,6 @@ def status():
 
     return {
         'status':True if (stderr=='' and stdout != '') else False,
-        'out':stdout,
+        # 'out':stdout,
         'err':stderr
     }
