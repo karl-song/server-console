@@ -13,7 +13,7 @@ def start():
         }
 
     else:
-        proc = subprocess.run("nginx -c"+config.nginx_conf, shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+        proc = subprocess.run(config.nginx_run+" -c "+config.nginx_conf, shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
         stdout = proc.stdout.decode("gbk")
         stderr = proc.stderr.decode("gbk")
 
@@ -25,7 +25,7 @@ def start():
 
 def stop():
     if status()['status']:
-        proc = subprocess.run("nginx -s stop", shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+        proc = subprocess.run(config.nginx_run+" -s stop", shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
         stdout = proc.stdout.decode("gbk")
         stderr = proc.stderr.decode("gbk")
 
@@ -43,7 +43,7 @@ def stop():
 
 def quit():
     if status()['status']:
-        proc = subprocess.run("nginx -s quit", shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+        proc = subprocess.run(config.nginx_run+" -s quit", shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
         stdout = proc.stdout.decode("gbk")
         stderr = proc.stderr.decode("gbk")
 
@@ -61,7 +61,7 @@ def quit():
 
 def reload():
     if status()['status']:
-        proc = subprocess.run("nginx -s reload", shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+        proc = subprocess.run(config.nginx_run+" -s reload", shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
         stdout = proc.stdout.decode("gbk")
         stderr = proc.stderr.decode("gbk")
 
@@ -78,7 +78,7 @@ def reload():
         }
 
 def test():
-    proc = subprocess.run("nginx -t", shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+    proc = subprocess.run(config.nginx_run+" -t", shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
     stdout = proc.stdout.decode("gbk")
     stderr = proc.stderr.decode("gbk")
 
